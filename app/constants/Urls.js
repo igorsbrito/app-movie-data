@@ -1,4 +1,4 @@
-const base_movie_api = 'https://api.themoviedb.org/3/search/movie'
+const base_movie_api = 'https://api.themoviedb.org/3/'
 
 const base_image_url = 'https://image.tmdb.org/t/p/w500/'
 

@@ -39,7 +39,7 @@ export default class ListMovieScreen extends React.Component {
     doSearch = (searchValueStr) => {
         let searchValue = searchValueStr.replace(' ', '+');
 
-        let url = base_movie_api + '?api_key=' + database_api_key + "&query=" + searchValue
+        let url = base_movie_api + 'search/movie?api_key=' + database_api_key + "&query=" + searchValue
         console.log(url);
         this.setState({ loading: true });
 
@@ -59,6 +59,10 @@ export default class ListMovieScreen extends React.Component {
         })
     }
 
+    movieDetail = (data) => {
+        console.log(data);
+        this.props.navigation.navigate('movieDetail', data);
+    }
 
     render() {
         return (
@@ -79,11 +83,13 @@ export default class ListMovieScreen extends React.Component {
                                 return (
                                     <FilmCard
                                         key={i}
+                                        id={movie.id}
                                         title={movie.title}
                                         releaseDate={releaseDate}
                                         imageUri={movie.poster_path == null ? null : imageUri}
                                         averageVote={movie.vote_average}
                                         overview={movie.overview}
+                                        onPress={this.movieDetail}
                                     />
                                 )
                             })
@@ -95,7 +101,10 @@ export default class ListMovieScreen extends React.Component {
                 </ScrollView>
                 {
                     this.state.loading ?
-                        (<ActivityIndicator size="large" color="#284887" />)
+                        (<ScrollView contentContainerStyle={styles.scrollview}>
+                            <ActivityIndicator size="large" color="#fff" />
+                        </ScrollView>
+                        )
                         : null
                 }
             </ImageBackground>

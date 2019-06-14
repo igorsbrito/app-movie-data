@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import moment from 'moment'
 
-const FilmCard = ({ title, imageUri, releaseDate, averageVote, onPress, overview }) => {
+const FilmCard = ({ id, title, imageUri, releaseDate, averageVote, onPress, overview }) => {
 
     screenWidth = Dimensions.get('window').width
 
@@ -71,25 +71,21 @@ const FilmCard = ({ title, imageUri, releaseDate, averageVote, onPress, overview
     })
 
     return (
-        <TouchableOpacity style={styles.cardView}>
+        <TouchableOpacity style={styles.cardView}
+            onPress={() => onPress({
+                id: id,
+                title: title,
+                imageUri: imageUri
+            })}>
             <View style={styles.topView}>
-                {
-                    imageUri == null ?
-                        null
-                        :
-                        (
-                            <View style={styles.imageView}>
-                                <Image
-                                    source={{ uri: imageUri }}
-                                    style={{ height: 150, borderRadius: 5 }}
-                                    resizeMode='contain'
-                                />
-                            </View>
 
-                        )
-
-                }
-
+                <View style={styles.imageView}>
+                    <Image
+                        source={imageUri == null ? require('../../assets/icons/filme-icon-black.png') : { uri: imageUri }}
+                        style={{ height: 150, borderRadius: 5 }}
+                        resizeMode='contain'
+                    />
+                </View>
                 <View style={styles.textView}>
                     <Text style={styles.title}>{title}</Text>
                     <View style={styles.infoView}>
