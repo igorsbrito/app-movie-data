@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { FilmCard } from '../components/FilmCard';
 
-import { base_movie_api } from '../constants/Urls';
+import { base_movie_api, base_image_200_url } from '../constants/Urls';
 import { database_api_key } from '../constants/Keys';
 import * as api from '../requests';
 import moment from 'moment';
@@ -76,7 +76,7 @@ export default class ListMovieScreen extends React.Component {
                             this.state.listMovies.map((movie, i) => {
 
 
-                                let imageUri = 'https://image.tmdb.org/t/p/w200/' + movie.poster_path;
+                                let imageUri = base_image_200_url + movie.poster_path;
 
                                 let releaseDate = moment(movie.release_date, 'YYYY-MM-DD').format('DD/MM/YYYY')
 

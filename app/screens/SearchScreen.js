@@ -23,7 +23,7 @@ export default class SearchScreen extends React.Component {
             loading: false
         }
     }
-
+    
     doSearch = () => {
         console.log(this.state.searchValue);
         if (this.checkField(this.state.searchValue)) {
